@@ -52,4 +52,4 @@ If you know how to implement unit tests for the case, please fill an issue and s
 
 ## Contributing
 
-If you want to make it better, feel free to fork it, fill issues and send pull requests.
+If you found any bug or want to improve the project, please feel free to fork it, fill issues and send pull requests.
