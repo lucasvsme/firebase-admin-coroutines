@@ -30,6 +30,7 @@ subprojects {
     tasks {
         withType<KotlinCompile> {
             kotlinOptions {
+                freeCompilerArgs = listOf("-Xdisable-default-scripting-plugin")
                 jvmTarget = "1.8"
             }
         }
