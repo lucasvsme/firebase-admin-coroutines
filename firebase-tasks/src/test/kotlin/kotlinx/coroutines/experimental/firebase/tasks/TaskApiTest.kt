@@ -10,23 +10,20 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.Lifecycle
 import java.io.FileInputStream
 
-@DisplayName("Task<T>.await() Test")
+@TestInstance(Lifecycle.PER_CLASS)
 class TaskApiTest {
 
-    companion object {
-
-        @BeforeAll
-        @JvmStatic
-        fun setUpFirebase() {
-            FileInputStream("serviceAccount.json").use {
-                FirebaseApp.initializeApp(FirebaseOptions.Builder()
-                        .setCredential(FirebaseCredentials.fromCertificate(it))
-                        .build())
-            }
+    @BeforeAll
+    fun setUpFirebase() {
+        FileInputStream("serviceAccount.json").use {
+            FirebaseApp.initializeApp(FirebaseOptions.Builder()
+                    .setCredential(FirebaseCredentials.fromCertificate(it))
+                    .build())
         }
     }
 
@@ -34,8 +31,7 @@ class TaskApiTest {
     fun `A Task can return a result`() = runBlocking<Unit> {
         val auth = FirebaseAuth.getInstance()
 
-        val name = "John"
-        val email = "example@email.com"
+        val (name, email) = "John" to "example@email.com"
         auth.createUser(UserRecord.CreateRequest()
                 .setDisplayName(name)
                 .setEmail(email)).await()
