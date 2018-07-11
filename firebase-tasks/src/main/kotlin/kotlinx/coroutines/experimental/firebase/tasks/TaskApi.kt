@@ -31,11 +31,6 @@ import kotlin.coroutines.experimental.suspendCoroutine
  * ```
  */
 suspend fun <T> Task<T>.await(): T = suspendCoroutine { continuation ->
-    addOnCompleteListener { task ->
-        if (task.isSuccessful) {
-            continuation.resume(task.result)
-        } else {
-            continuation.resumeWithException(task.exception)
-        }
-    }
+    addOnSuccessListener(continuation::resume)
+    addOnFailureListener(continuation::resumeWithException)
 }
