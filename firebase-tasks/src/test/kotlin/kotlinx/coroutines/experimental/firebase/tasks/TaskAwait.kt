@@ -1,4 +1,4 @@
-package kotlinx.coroutines.experimental.firebase
+package kotlinx.coroutines.experimental.firebase.tasks
 
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
