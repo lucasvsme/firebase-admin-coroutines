@@ -7,18 +7,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.UserRecord
 import kotlinx.coroutines.experimental.runBlocking
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import java.io.FileInputStream
+import java.nio.file.Paths
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ApiFutureTest {
 
+    private val credentialsPath = Paths.get(".").resolve("..").resolve("google-services.json")
+
     @BeforeAll
     fun setUpFirebase() {
-        FileInputStream("serviceAccount.json").use {
+        FileInputStream(credentialsPath.toFile()).use {
             FirebaseApp.initializeApp(FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(it))
                     .build())
@@ -36,8 +40,8 @@ class ApiFutureTest {
 
         val user = auth.getUserByEmailAsync(email).await()
 
-        Assertions.assertEquals(user.displayName, name)
-        Assertions.assertEquals(user.email, email)
+        assertEquals(user.displayName, name)
+        assertEquals(user.email, email)
 
         auth.deleteUserAsync(user.uid).await()
     }
@@ -46,7 +50,7 @@ class ApiFutureTest {
     fun `An ApiFuture can throw an exception`() {
         val invalidEmail = "not.registered@email.com"
 
-        Assertions.assertThrows(FirebaseAuthException::class.java) {
+        assertThrows(FirebaseAuthException::class.java) {
             runBlocking {
                 FirebaseAuth.getInstance().getUserByEmailAsync(invalidEmail).await()
             }

@@ -14,13 +14,16 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 import java.io.FileInputStream
+import java.nio.file.Paths
 
 @TestInstance(Lifecycle.PER_CLASS)
 class TaskApiTest {
 
+    private val credentialsPath = Paths.get(".").resolve("..").resolve("google-services.json")
+
     @BeforeAll
     fun setUpFirebase() {
-        FileInputStream("serviceAccount.json").use {
+        FileInputStream(credentialsPath.toFile()).use {
             FirebaseApp.initializeApp(FirebaseOptions.Builder()
                     .setCredential(FirebaseCredentials.fromCertificate(it))
                     .build())
