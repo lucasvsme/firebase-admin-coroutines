@@ -14,7 +14,7 @@ val auth = FirebaseAuth.getInstance()
 auth.getUserByEmail(email)
     .addOnSuccessListener { user ->
         auth.deleteUser(user.uid)
-          .addOnSuccesListener { println("User deleted") }
+          .addOnSuccessListener { println("User deleted") }
           .addOnFailureListener { exception -> println(exception) }
     }
     .addOnFailureListener { exception -> println(exception) }
