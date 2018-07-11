@@ -1,7 +1,7 @@
 # kotlinx-coroutines-firebase
 
 Coroutine wrapper for Firebase [Task](https://firebase.google.com/docs/reference/admin/java/reference/com/google/firebase/tasks/Task) class.
-This module implements a method called [`await()`](src/main/kotlin/kotlinx/coroutines/experimental/firebase/TaskAwait.kt) to handle the `OnCompleteListener` callback.
+This module implements a method called [`await()`](src/main/kotlin/kotlinx/coroutines/experimental/firebase/TaskApiTest.kt) to handle the `OnCompleteListener` callback.
 
 _P.S: The implementation is based on the Firebase Admin SDK._
 
@@ -42,7 +42,7 @@ try {
 
 ## How to use
 
-Assuming you already have the [Firebase Admin SDK](https://github.com/firebase/firebase-admin-java) as a dependency in your project, you just need to copy and paste [this](src/main/kotlin/kotlinx/coroutines/experimental/firebase/TaskAwait.kt) function in it.
+Assuming you already have the [Firebase Admin SDK](https://github.com/firebase/firebase-admin-java) as a dependency in your project, you just need to copy and paste [this](src/main/kotlin/kotlinx/coroutines/experimental/firebase/TaskApiTest.kt) function in it.
 
 ## About testing
 

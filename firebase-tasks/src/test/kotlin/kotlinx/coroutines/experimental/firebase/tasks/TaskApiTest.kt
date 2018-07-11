@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test
 import java.io.FileInputStream
 
 @DisplayName("Task<T>.await() Test")
-class TaskAwait {
+class TaskApiTest {
 
     companion object {
 
@@ -52,10 +52,10 @@ class TaskAwait {
     fun `A Task can throw an exception`() {
         val invalidEmail = "not.registered@email.com"
 
-        assertThrows(FirebaseAuthException::class.java, {
+        assertThrows(FirebaseAuthException::class.java) {
             runBlocking {
                 FirebaseAuth.getInstance().getUserByEmail(invalidEmail).await()
             }
-        })
+        }
     }
 }
