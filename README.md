@@ -1,3 +1,8 @@
+> ## Deprecation notice
+> A better implementation has been merged into the official [kotlin/kotlinx.coroutines](https://github.com/kotlin/kotlinx.coroutines) repository.
+> 
+> Please, use the [official implementation](https://github.com/Kotlin/kotlinx.coroutines/tree/master/integration/kotlinx-coroutines-play-services) instead.
+
 # Firebase Admin Coroutines
 
 Coroutine wrappers for Tasks API and ApiFuture API used in Firebase Admin SDK.
